@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+   
+    <title>doğu kaan sakallı</title>
+</head>
+<body>
+<h1 class="baslık">ŞEHİR TAHMİNİ</h1>
+<img src="bölgeler.png" alt="">
+<p>bir bölge seç ve sana verilen bilgilerden yola çıkarak şehri tahmin etmeye çalış</p>
+
+<button id="Karadeniz" class="b">Karadeniz</button>
+<button id="Marmara" class="b">Marmara</button>
+<button id="Akdeniz" class="b">Akdeniz</button>
+<button id="ia" class="b">İç Anadolu</button>
+<button id="gda" class="b">Güney Doğu Anadolu</button>
+<button id="da" class="b">Doğu Anadolu</button>
+<button id="ege" class="b">Ege</button>
+<b><div id="cities"></div></b>
+<br><br>
+<p>tahmininizi girin:</p>
+<input type="text" name="tahmin" id="tahmin">
+<button id="onay1">tahmin</button>
+<div id="sonuc"></div>
+
+
+
+
+
+<script >
+  let k =document.getElementById("Karadeniz");
+  let ma=document.getElementById("Marmara");
+  let ak=document.getElementById("Akdeniz");
+  let ia=document.getElementById("ia");
+  let gda=document.getElementById("gda");
+  let da=document.getElementById("da");
+  let ege=document.getElementById("ege");
+  let a=document.getElementById("regions");
+  
+  let b=document.getElementById("onay");
+  let c=document.getElementById("cities");
+  let d=document.getElementById("tahmin");
+  let e=document.getElementById("onay1");
+  let f=document.getElementById("sonuc");
+ 
+    let [[marmaraSehir,karadenizSehir,akdenizSehir,egeSehir,doguAnadoluSehir,guneyDoguAnadoluSehir,icAnadoluSehir]]=[[
+    [{name:"çanakkale",population:542.157,meshur:"şehitlik,truva atı",plaka:17}, {name:"balıkesir",population:"1,229 milyon ",meshur:"ayvalık tostu",plaka:10},
+    {name:"edirne",population:407.763,plaka:22}, {name:"tekirdağ",population:204.001,plaka:59}, {name:"kırklareli",population:88.956,plaka:39},
+    {name:"istanbul",population:"16 milyon",plaka:34}, {name:"bursa",population:"3.147 milyon",plaka:16}, {name:"yalova",population:121.479,plaka:77}, {name:"kocaeli",population:"2.033 milyon",plaka:41},
+    {name:"bilecik",population:228.334,plaka:11} , {name:"sakarya",population:"1,011 milyon",plaka:54} ],
+
+
+    [{name:"Bolu",population:233.379,plaka:14}, {name:"Düzce",population:395.679,plaka:81}, {name:"Zonguldak",population:599.698,plaka:67}, 
+    {name:"Karabük",population:249.287,plaka:78}, {name:"Bartın",population:201.711,plaka:74}, {name:"Kastamonu",population:383.373,plaka:37},
+    {name:"Çorum",population:526.282,plaka:19},{name: "Sinop",population:57.399,plaka:57}, {name:"Samsun",population:605.319,plaka:55}, 
+    {name:"Amasya",population:335.331,plaka:05}, {name:"Tokat",population:602.567,plaka:60},{name: "Ordu",population:760.872,plaka:52},
+    { name:"Giresun",population:450.154,plaka:28}, {name:"Gümüşhane",population:150.119,plaka:29},{name: "Trabzon",population:816.684,plaka:61},
+    {name:"Bayburt",population:85.042,plaka:69}, {name:"Rize",population:331.041,plaka:53} , {name:"Artvin",population:169.543,plaka:08}],
+
+
+    [{name:"Antalya ",population:"2.5 milyon ",plaka:07},{name: "Burdur",population:273.716,plaka:15}, {name:"Isparta",population:445.678,plaka:32}, 
+    {name:"Mersin",population:955.106,plaka:33},{name:" Adana",population:"1,769 milyon",plaka:01},{name: "Hatay",population:"1.628milyon ",plaka:31},
+     {name:"Osmaniye ",population:553.012,plaka:80},{name:"Kahramanmaraş",population:"1.17milyon ",plaka:46}],
+
+
+    [{name:"İzmir",population:"4,367 milyon",plaka:35}, {name:"Aydın",population:"1.134milyon",plaka:09}, {name:"Muğla",population:"1.021milyon",plaka:48},
+     {name:"Manisa",population:356.702,plaka:45}, {name:"Denizli",population:"1,028 milyon",plaka:20}, {name:"Uşak",population:373.183,plaka:64}, 
+     {name:"Kütahya",population:248.054,plaka:43} ,{name:"Afyon",population:744.179,plaka:03}],
+     
+
+    ["Malatya", "Erzincan", "Elazığ", "Tunceli", "Bingöl", "Erzurum", "Muş", "Bitlis", "Şırnak", "Kars", "Ağrı", "Ardahan", "Van", "Iğdır" , "Hakkari"],
+    [ "Gaziantep", "Kilis", "Adıyaman", "Şanlıurfa", "Diyarbakır", "Mardin", "Batman" , "Siirt"],
+    ["Eskişehir"," Konya", "Ankara", "Çankırı", "Aksaray", "Kırıkkale", "Kırşehir", "Yozgat", "Niğde", "Nevşehir"," Kayseri", "Karaman" ,"Sivas"]]];
+    ma.onclick=function()
+            {      
+          
+        let s1=Math.floor( Math.random()*marmaraSehir.length);
+        c.innerHTML="harf sayısı: "+marmaraSehir[s1].name.length
+        +" nufusu: "+marmaraSehir[s1].population
+        +" plakası: "+marmaraSehir[s1].plaka;
+        e.onclick=function(){
+          
+          let thmn=  d.value.toLowerCase();
+        if(marmaraSehir[s1].name==thmn)
+        {
+          f.innerHTML="TEBRİKLER DOĞRU CEVAP"
+
+
+        }
+        else{f.innerHTML="TEKRAR DENEYİNİZ"}
+         }}
+
+
+   k.onclick=function(){
+      
+      let s2=Math.floor( Math.random()*karadenizSehir.length);
+      c.innerHTML="harf sayısı: "+karadenizSehir[s2].name.length
+      +" nufusu: "+karadenizSehir[s2].population
+        +" plakası: "+karadenizSehir[s2].plaka;
+      e.onclick=function(){
+        
+      if(karadenizSehir[s2].name==d.value)
+      {
+        f.innerHTML="TEBRİKLER DOĞRU CEVAP"
+
+
+      }
+      else{f.innerHTML="TEKRAR DENEYİNİZ"}
+      }
+      }
+      ak.onclick=function(){
+      
+      let s2=Math.floor( Math.random()*akdenizSehir.length);
+      c.innerHTML="harf sayısı: "+akdenizSehir[s2].name.length
+      +" nufusu: "+akdenizSehir[s2].population
+        +" plakası: "+akdenizSehir[s2].plaka;
+      e.onclick=function(){
+      if(akdenizSehir[s2].name==d.value)
+      {
+        f.innerHTML="TEBRİKLER DOĞRU CEVAP"
+
+
+      }
+      else{f.innerHTML="TEKRAR DENEYİNİZ"}
+      }
+      }
+
+      ia.onclick=function(){
+      
+      let s2=Math.floor( Math.random()*icAnadoluSehir.length);
+      c.innerHTML="harf sayısı: "+icAnadoluSehir[s2].length;
+      e.onclick=function(){
+      if(icAnadoluSehir[s2]==d.value)
+      {
+        f.innerHTML="TEBRİKLER DOĞRU CEVAP"
+
+
+      }
+      else{f.innerHTML="TEKRAR DENEYİNİZ"}
+      }
+      }
+
+      ege.onclick=function(){
+      
+      let s2=Math.floor( Math.random()*egeSehir.length);
+      c.innerHTML="harf sayısı: "+egeSehir[s2].name.length
+      +" nufusu: "+egeSehir[s2].population
+        +" plakası: "+egeSehir[s2].plaka;
+      e.onclick=function(){
+      if(egeSehir[s2].name==d.value)
+      {
+        f.innerHTML="TEBRİKLER DOĞRU CEVAP"
+
+
+      }
+      else{f.innerHTML="TEKRAR DENEYİNİZ"}
+      }
+      }
+
+    gda.onclick=function(){
+      
+      let s2=Math.floor( Math.random()*guneyDoguAnadoluSehir.length);
+      c.innerHTML="harf sayısı: "+guneyDoguAnadoluSehir[s2].length;
+      e.onclick=function(){
+      if(guneyDoguAnadoluSehir[s2]==d.value)
+      {
+        f.innerHTML="TEBRİKLER DOĞRU CEVAP"
+
+
+      }
+      else{f.innerHTML="TEKRAR DENEYİNİZ"}
+      }
+      }
+
+      da.onclick=function(){
+      
+      let s2=Math.floor( Math.random()*doguAnadoluSehir.length);
+      c.innerHTML="harf sayısı: "+doguAnadoluSehir[s2].length;
+      e.onclick=function(){
+      if(doguAnadoluSehir[s2]==d.value)
+      {
+        f.innerHTML="TEBRİKLER DOĞRU CEVAP"
+
+
+      }
+      else{f.innerHTML="TEKRAR DENEYİNİZ"}
+      }
+      }
+
+
+  
+            
+    
+
+    
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+</script>
+
+    
+</body>
+</html>

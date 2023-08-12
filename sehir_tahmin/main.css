@@ -1,0 +1,41 @@
+body{
+    background-color: pink;
+}
+.baslık{
+    font-size: 60px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+button{
+    background-color: black;
+    color: white;
+}
+button:hover{
+    background-color: rgb(94, 210, 94);
+    color: black;
+    
+}
+input[type=text]{
+    background-color: bisque;
+    
+}
+input[type=text]:hover{
+    background-color: greenyellow;
+}
+body{
+    background-color: turquoise;
+    text-align: center;
+}
+img{
+    width: 450px;
+    height: 280px;
+}
+button.b{
+    height: 100px;
+    width: 155px;
+}
+#cities{
+font-size: 20px;
+color: rgb(255, 0, 0);
+
+}
